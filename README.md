@@ -1,2 +1,2 @@
 # XSS-Projects
-teaching for someone who wanted learn XSS 
+teaching for someone who want to learn XSS 
