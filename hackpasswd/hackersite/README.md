@@ -18,7 +18,7 @@ PHP  header()函数教學:http://www.w3school.com.cn/php/func_http_header.asp
             
 ## hack.php和index.html程式碼講解說明              
 ### index.html         
-和/hackerproof/index.html一樣，用jQuery發出請求已改變狀態並觸發php檔，與index1.html具一樣效果。               
+和/hackerproof/index.html一樣，用jQuery發出請求已改變狀態並觸發php檔，與index1.html具一樣效果，而與index1.html不同在於它是用button觸發狀態，index1.html是直接input表單。               
                         
 ### hack.php           
 使用$ _ REQUEST不管是get或post都可收到，但預設順序為POST>GET，其他就和hack1.php一樣，最後轉跳到hackerproof資料夾中登入成功的畫面。                    
