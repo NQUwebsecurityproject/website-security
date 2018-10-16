@@ -17,7 +17,7 @@ PHP  fwrite()函数教學:http://www.w3school.com.cn/php/func_filesystem_fwrite.
 PHP  header()函数教學:http://www.w3school.com.cn/php/func_http_header.asp           
             
 ## hack.php和index.html程式碼講解說明              
-### index1.html         
+### index.html         
 sss
                         
-### hack1.php           
+### hack.php           
