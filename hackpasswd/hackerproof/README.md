@@ -8,8 +8,9 @@
 >var account = document.getElementById("acc").value;            
 var passwd = document.getElementById("pwd").value;             
         
-這兩行是設定把找尋的元素"acc","pwd"的值，分別設為"account","passwd"變數              
-
+這兩行是設定把找尋的元素"acc","pwd"的值，分別設為"account","passwd"變數。              
+          
+後面的指令為http的請求，當請求發生時存储後方的函数，當readyState的屬性變動時，就會換成變動後的函數，函數為當狀態是已完成請求並響應和OK時，此時的html響回反應。最後的open()和send()是將請求發送到server，並用get的方式請求，true的意思是規定響應處在onreadystatechange事件中的就绪狀態執行的函數。    
                                 
 ## login.php           
             
