@@ -1,6 +1,7 @@
 <?php 
 $link=mysqli_connect("localhost","root","guest","questionnaire_bar");
 mysqli_query($link,"set names utf8");
+ini_set("session.cookie_httponly", 1);
 session_start(); 
 if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
     $name = $_SESSION['name']; $pass = $_SESSION['passwd'];
@@ -24,8 +25,8 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                 min-width: 440px;
                 position: absolute;
                 padding: 6px 8px;
-                margin: 0 10px 0 10px;
                 display: none;
+                margin: 0 10px 0 10px;
                 float: right;
                 right: 0;
                 top: 14px;
@@ -142,6 +143,7 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                 position: absolute;
                 padding: 20px 10%;
                 display: block;
+                z-index: 100;
                 height: calc(100% - 90px);
                 width: 80%;
                 left: 0;
@@ -151,6 +153,7 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                 background-color: #229999;
                 min-width: 800px;
                 display: block;
+                z-index: 100;
                 height: 200px;
                 margin: 20px;
                 float: left;
@@ -161,12 +164,14 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                 font-size: 48px;
                 position: relative;
                 padding: 10px;
+                z-index: 100;
                 margin: 60px 0 0 0;
                 float: left;
             }
              #subcontent div p {
                 position: absolute;
                 padding: 10px;
+                z-index: 100;
                 margin: 110px 0 0 calc(10% + 22px);
                 float: left;
                 left: 0;
@@ -177,8 +182,9 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                 font-weight: 900;
                 font-size: 32px;
                 position: relative;
-                height: 100%;
+                z-index: 100;
                 cursor: pointer;
+                height: 100%;
                 border: 0;
                 float: right;
                 width: 250px;
@@ -216,6 +222,52 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                 float: right;
                 width: 44px;
             }
+            .icon {
+                border-radius: 30px;
+                position: fixed;
+                padding: 11px 0;
+                z-index: 990;
+                height: 18px;
+                width: 40px;
+                float: left;
+                left: 5px;
+                top: 72px;
+            }
+            .icon:hover {
+                background-color: #229999;
+            }
+            .icon:hover .line {
+                background-color: lightgreen;
+            }
+            .line {
+                background-color: #229999;
+                z-index: 999;
+                margin: 2.8px 10px;
+                height: 3px;
+                width: 20.8px;
+            }
+            .list {
+                background-color: white;
+                position: absolute;
+                padding: 50px 0 0 0;
+                display: none;
+                opacity: 0.5;
+                z-index: 998;
+                height: calc(100% - 70px);
+                width: 200px;
+                float: left;
+                left: 0;
+                top: 68px;
+            }
+            .list span {
+                font-weight: 900;
+                height: 30px;
+                margin: 10px 10px 0 10px;
+                z-index: 999;
+                color: black;
+                width: 100%;
+                float: left;
+            }
             .clear {
                 clear: both;
             }
@@ -225,7 +277,7 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
         <div class="header">
             <span id="title">來填問卷吧</span><span id="title2">Questionnaire Bar</span>
             <input id="search" placeholder="Search">
-            <button id="go" onclick="search()">Go></button>
+            <button id="go" onclick="search(999,0)">Go></button>
             <button class="b" id="b" onclick="">登入</button>
             <div class="content" id="content">
                 <div class="lb">
@@ -242,6 +294,17 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
             </div>
             <div class="clear"></div>
         </div>
+        <div class="menu">
+            <div class="icon" onclick="menu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="list">
+                <button id="myq" onclick="search(<?php echo $_SESSION['id']; ?>,1)">我的問卷</button>
+                <span>新增問卷[建制中...]</span>
+            </div>
+        </div>
         <div id="subcontent">
             <?php
                 $chk = mysqli_query($link, "SELECT * FROM `questionnaire` WHERE 1");
@@ -249,8 +312,8 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                 for ($i=0;$i<$cnt;$i++) {
                     $rs=mysqli_fetch_row($chk);
                     $id = $rs[0];
-                    $title = $rs[1];
-                    $detail = $rs[2];
+                    $title = $rs[2];
+                    $detail = $rs[3];
                     echo "<div class='quest'><span class='title'>".$title."</span><p>".$detail."</p><button onclick='quest(".$id.")'>開始填寫>></button><div class='clear'></div></div>";
                 }
             ?>
@@ -258,15 +321,22 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
         <div class="clear"></div>
         <script>
             var input = document.getElementById("pwd");
+            var input1 = document.getElementById("search");
             // Execute a function when the user releases a key on the keyboard
             input.addEventListener("keyup", function(event) {
             // Cancel the default action, if needed
             event.preventDefault();
             // Number 13 is the "Enter" key on the keyboard
-            if (event.keyCode === 13) {
-                // Trigger the button element with a click
-                document.getElementById("login").click();
-            }
+                if (event.keyCode === 13) {
+                    // Trigger the button element with a click
+                    document.getElementById("login").click();
+                }
+            });
+            input1.addEventListener("keyup", function(event) {
+            event.preventDefault();
+                if (event.keyCode === 13) {
+                    document.getElementById("go").click();
+                }
             });
             function login() {
                 var account = document.getElementById("acc").value;
@@ -278,14 +348,21 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                         $("#b").html(this.responseText); //把button
                         $("#b").removeClass("b"); //去掉有按鈕性質的css
                         $("#b").css("width", "130px"); //讓文字可以fit in區塊不跑版
+                        $(".menu").show("fast","swing");
                     }
                 };
-                xmlhttp.open("POST", "login.php", true);
-                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.send("account=" + account + "&passwd=" + passwd + "&rem=" + rem);
+                xmlhttp.open("GET", "login.php?account=" + account + "&passwd=" + passwd + "&rem=" + rem, true);
+                xmlhttp.send();
+                // xmlhttp.open("POST", "login.php", true);
+                // xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                // xmlhttp.send("account=" + account + "&passwd=" + passwd + "&rem=" + rem);
             }
-            function search() { //顯示無用搜尋裏面的東西
-                var search = document.getElementById("search").value;
+            function search(a,x) {
+                if (a==999&&x==0) {
+                    var search = document.getElementById("search").value;
+                }else if (x==1) {
+                    var search = a;
+                }
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
@@ -294,7 +371,7 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                 };
                 xmlhttp.open("POST", "search.php", true);
                 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.send("search=" + search);
+                xmlhttp.send("search=" + search + "&chksum=" + x);
             }
             function quest(a) {
                 var id = a;
@@ -340,6 +417,11 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlhttp.send(req);
             }
+            function menu() {
+                if ($("#b").width() != 28) {
+                    $(".list").toggle("fast","swing");
+                }
+            }
             $(document).ready(function(){
                 $(".b").click(function(){
                     if ($("#b").width() == 28) {
@@ -354,6 +436,7 @@ if (isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
         <?php 
             if(isset($_SESSION["name"]) && isset($_SESSION["passwd"])) {
                 ?><script>login();</script><?php
+                echo $_SESSION["id"];
             }
         ?>
     </body>
