@@ -21,22 +21,6 @@ $mail->Username = '01lu301998@gmail.com';    // SMTP username
 $mail->Password = '';    // SMTP password
 $mail->SMTPSecure = 'ssl';   // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 465;  // TCP port to connect to
-//Recipients
-$mail->setFrom('01lu301998@gmail.com', 'questionire');
-$mail->addAddress('s110510501@student.nqu.edu.tw', 'blablabla');     // Add a recipient
-
-//Content
-$mail->isHTML(true);                                  // Set email format to HTML
-$mail->Subject = 'Here is the subject';
-$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-
-$mail->SMTPOptions = array(
-    'ssl' => array(
-        'verify_peer' => false,
-        'verify_peer_name' => false,
-        'allow_self_signed' => true
-    )
-);
 // mail
 
 $acc = $_REQUEST["account"];
@@ -56,33 +40,13 @@ if ($acc == "" | $acc == null) {
         ?><script>alert("該賬號未注冊！！");
         window.location.replace("index.php");</script><?php
     }
-    else if ($pwd == $rs[0]) { //比對密碼
-        // echo var_dump($_SESSION["attempt"]);
-        if (isset($_SESSION["attempt"])) {
-            // echo var_dump($_SESSION["attempt"][0]);
-            for ($i=0; $i<count($_SESSION["attempt"]);$i++) {
-                if ($_SESSION["attempt"][$i]['accs'] == $acc) {
-                    unset($_SESSION["attempt"][$i]);
-                    for ($j=$i+1;$j<count($_SESSION["attempt"]);$j++) {
-                        $_SESSION["attempt"][$j-1]=$_SESSION["attempt"][$j];
-                        unset($_SESSION["attempt"][$j]);
-                    }
-                }
-            }
-        }
-        if ($rem) {
-            $_SESSION["name"] = $acc;
-            $_SESSION["passwd"] = $pwd;
-        }
-        echo "<span>登入成功，</span><a href='logout.php'><button id='logout'>登出</button></a>";
-    }
     else if ($pwd == "" | $pwd == null) {
         ?><script>alert("密碼不可爲空！！");
         window.location.replace("index.php");</script><?php
     }/* else if () {
         ?><script>window.location.replace("login.html");</script><?php
     }*/
-    else {
+    else if ($pwd != $rs[0]) {
         if (!isset($_SESSION["attempt"])) {
             $_SESSION["attempt"] = [
                 0 => [
@@ -113,6 +77,22 @@ if ($acc == "" | $acc == null) {
                         $_SESSION['attempt'][$num]['freq'] += 1;
                         ?><script>alert("密碼錯誤！賬號<?php echo $info['accs']; ?>嘗試登入太多次了，請等<?php echo (2-((int)date('i')-(int)$info['mins'])); ?>分鐘再來!");</script><?php
                         try {
+                            //Recipients
+                            $mail->setFrom('01lu301998@gmail.com', 'questionnaire');
+                            $mail->addAddress('s110510501@student.nqu.edu.tw', 'blablabla');     // Add a recipient
+
+                            //Content
+                            $mail->isHTML(true);                                  // Set email format to HTML
+                            $mail->Subject = 'Someone try to login your Questionnaire account for SEVERAL TIMES.';
+                            $mail->Body    = 'Hello, ---   your Questionnaire account has been login for <b>SEVERAL TIMES</b>.';
+
+                            $mail->SMTPOptions = array(
+                                'ssl' => array(
+                                    'verify_peer' => false,
+                                    'verify_peer_name' => false,
+                                    'allow_self_signed' => true
+                                )
+                            );
                             $mail->send();
                             echo 'Message has been sent';
                         } catch (Exception $e) {
@@ -162,6 +142,30 @@ if ($acc == "" | $acc == null) {
                 ?><script>alert("密碼錯誤，<?php echo '還剩'.(5-$_SESSION['attempt'][count($_SESSION['attempt'])-1]['freq']).'次嘗試機會。'; ?>");
                 window.location.replace("index.php");</script><?php
             }
+        }
+    }else { //比對密碼
+        // echo var_dump($_SESSION["attempt"]);
+        if (isset($_SESSION["attempt"])) {
+            for ($i=0; $i<count($_SESSION["attempt"]);$i++) {
+                if ($_SESSION["attempt"][$i]['accs'] == $acc) {
+                    if ($_SESSION["attempt"][$i]["freq"] <=4) {
+                        unset($_SESSION["attempt"][$i]);
+                        for ($j=$i+1;$j<count($_SESSION["attempt"]);$j++) {
+                            $_SESSION["attempt"][$j-1]=$_SESSION["attempt"][$j];
+                            unset($_SESSION["attempt"][$j]);
+                        }
+                    }else {
+                        ?><script>alert("賬號<?php echo $_SESSION['attempt'][$i]['accs']; ?>嘗試登入太多次了，請等<?php echo (2-((int)date('i')-(int)$_SESSION['attempt'][$i]['mins'])); ?>分鐘再來!");
+                        window.location.replace("index.php");</script><?php
+                    }
+                }
+            }
+        }else {
+            if ($rem) {
+                $_SESSION["name"] = $acc;
+                $_SESSION["passwd"] = $pwd;
+            }
+            echo "<span>登入成功，</span><a href='logout.php'><button id='logout'>登出</button></a>";
         }
     }
 }
