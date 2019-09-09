@@ -55,4 +55,4 @@ ChallengeResponseAuthentication yes
 ```
 [root@user/Desktop/google-authenticator-libpam-master]# google-authenticator
 ```
->影片教學與實測:[google-authenticator二次認證](https://www.youtube.com/watch?v=xyS7Ms2LalM)。
+> ## 影片教學與實測:[google-authenticator二次認證](https://www.youtube.com/watch?v=xyS7Ms2LalM)。
