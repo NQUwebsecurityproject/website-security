@@ -14,6 +14,7 @@
 [root@user/Desktop]# cd google-authenticator-libpam-master
 [root@user/Desktop/google-authenticator-libpam-master]# ./bootstrap.sh
 [root@user/Desktop/google-authenticator-libpam-master]# ./configure
+[root@user/Desktop/google-authenticator-libpam-master]# make && make install
 ```
 >如果出現錯誤訊息，無法找到PAM library or the PAM header檔案，就先安裝pam-devel套件後，再下./configure指令。
 ```
