@@ -1,60 +1,19 @@
-# 使用Fail2Ban 防範暴力破解(ssh、vsftp) 參照:[用 Fail2Ban 防範暴力破解 (SSH、vsftp、dovecot、sendmail)](http://www.vixual.net/blog/archives/252)
-## 1.
+# 使用Fail2Ban(0.9.7版)防範暴力破解(ssh、vsftp) 參照:[用 Fail2Ban 防範暴力破解 (SSH、vsftp、dovecot、sendmail)](http://www.vixual.net/blog/archives/252)
+## 1.Fail2ban 可以藉由掃描 log檔 (例如:/var/log/secure) 找出有惡意的IP進而去禁止其IP一段時間無法連入該伺服器或是永遠禁止，而暴力破解會造成一連串的登入失敗Fail2ban即可偵查出並加以防範。
+## 2.安裝Fail2Ban
 ```
-[root@user]# yum update nss curl\
+[root@localhost user/Desktop]# yum install fail2ban
+[root@localhost user/Desktop]# systemctl enable fail2ban
+[root@localhost user/Desktop]# systemctl start fail2ban
 ```
 ![image](https://github.com/LarrySu508/cisco-note/blob/master/week1/p1.png)
->
-## 2.
+## 3.更改設定檔
 ```
-[root@user/Desktop]# git clone google-authenticator-libpam
-[root@user/Desktop]# yum groupinstall "Development Tools"
+[root@localhost user/Desktop]# cd /etc/fail2ban
+[root@localhost etc/fail2ban]# cp fail2ban.conf fail2ban.local
+[root@localhost etc/fail2ban]# gedit fail2ban.local
 ```
-## 3.
-```
-[root@user/Desktop]# cd google-authenticator-libpam-master
-[root@user/Desktop/google-authenticator-libpam-master]# ./bootstrap.sh
-[root@user/Desktop/google-authenticator-libpam-master]# ./configure
-[root@user/Desktop/google-authenticator-libpam-master]# make && make install
-```
->
-```
-[root@user/Desktop/google-authenticator-libpam-master]# ./configure
-[root@user/Desktop/google-authenticator-libpam-master]# configure: error: Unable to find the PAM library or the PAM header files
-[root@user/Desktop/google-authenticator-libpam-master]# yum install pam-devel
-[root@user/Desktop/google-authenticator-libpam-master]# ./configure
-```
-## 4.
-```
-[root@user/Desktop/google-authenticator-libpam-master]# find / -name pam_google_authenticator.so -type f
-[root@user/Desktop/google-authenticator-libpam-master]# /usr/lib64/security/
-                                          .
-                                          .
-                                          .
-[root@user/Desktop/google-authenticator-libpam-master]# mv /usr/local/lib/security/pam_google_authenticator.* /usr/lib64/security/
-```
-## 5.
-```
-[root@user/Desktop/google-authenticator-libpam-master]# gedit /etc/pam.d/sshd
-```
->
-```
-auth required pam_google_authenticator.so nullok
-```
->
-```
-[root@user/Desktop/google-authenticator-libpam-master]# gedit /etc/ssh/sshd_config
-```
->
-```
-ChallengeResponseAuthentication yes
-```
->
-```
-[root@user/Desktop/google-authenticator-libpam-master]# systemctl restart sshd
-```
-## 6.
-```
-[root@user/Desktop/google-authenticator-libpam-master]# google-authenticator
-```
-> ## 影片教學與實測:[google-authenticator二次認證](https://www.youtube.com/watch?v=xyS7Ms2LalM)。
+![image](https://github.com/LarrySu508/cisco-note/blob/master/week1/p1.png)
+![image](https://github.com/LarrySu508/cisco-note/blob/master/week1/p1.png)
+## 4.最後記得做systemctl restart fail2ban
+> ## 實測影片:[NQU資工第五組專題:fail2ban防護篇](https://www.youtube.com/watch?v=wEuQW9laTg4&t=1s)。
