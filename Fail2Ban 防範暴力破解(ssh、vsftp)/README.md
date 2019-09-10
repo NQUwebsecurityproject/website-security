@@ -6,14 +6,14 @@
 [root@localhost user/Desktop]# systemctl enable fail2ban
 [root@localhost user/Desktop]# systemctl start fail2ban
 ```
-![image](https://github.com/LarrySu508/cisco-note/blob/master/week1/p1.png)
+![image](https://github.com/NQUwebsecurityproject/website-security/blob/master/Fail2Ban%20防範暴力破解(ssh、vsftp)/p1.png)
 ## 3.更改設定檔
 ```
 [root@localhost user/Desktop]# cd /etc/fail2ban
 [root@localhost etc/fail2ban]# cp fail2ban.conf fail2ban.local
 [root@localhost etc/fail2ban]# gedit fail2ban.local
 ```
-![image](https://github.com/LarrySu508/cisco-note/blob/master/week1/p1.png)
-![image](https://github.com/LarrySu508/cisco-note/blob/master/week1/p1.png)
+![image](https://github.com/NQUwebsecurityproject/website-security/blob/master/Fail2Ban%20防範暴力破解(ssh、vsftp)/p2.png)
+![image](https://github.com/NQUwebsecurityproject/website-security/blob/master/Fail2Ban%20防範暴力破解(ssh、vsftp)/p3.png)
 ## 4.最後記得做systemctl restart fail2ban
 > ## 實測影片:[NQU資工第五組專題:fail2ban防護篇](https://www.youtube.com/watch?v=wEuQW9laTg4&t=1s)。
