@@ -45,7 +45,7 @@ maxretry = 10  # 登入失敗幾次封鎖
  maxretry = 10 # 登入失敗幾次封鎖
  bantime  = 3600 # 封鎖的時間，單位:秒，3600=1小時
 ```
-![image](/p3.png)
+![image](https://github.com/NQUwebsecurityproject/website-security/blob/master/Fail2Ban%20%E9%98%B2%E7%AF%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3(ssh%E3%80%81vsftp)/p3.png)
 
 最後記得做
 ```
