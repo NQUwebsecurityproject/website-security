@@ -20,10 +20,15 @@
  [Apache建簡易網站](https://github.com/NQUwebsecurityproject/website-security/tree/master/XSS%E6%94%BB%E6%93%8A/hackpasswd/hackerproof)  
  [beef建置釣魚網站]() 
 ### 3.DoS,DDoS
-
+DoS攻擊：為阻斷服務攻擊，顧名思義就是想把伺服器的連線給阻斷掉，駭客通常會對伺服器一直做請求或偽造的回應封包，導致伺服器壅塞，這樣伺服器品質下滑。 
+HPING3做資源消耗型攻擊，主要是TCP洪水攻擊，一直傳送大量帶有特定旗標的TCP(通常都是SYN)封包，導致受害者不斷回送ACK封包，使資料無法傳送。  
+DDoS攻擊：為分散式阻斷服務攻擊，意思就是強化版的DoS攻擊，通常會運用兩個或以上的電腦去做攻擊，重點是又增加伺服器資源耗盡的問題，嚴重點還可能會讓伺服器當機。
 ## 三．防護機制
 ### 1.IPtable
-
+Iptable是個控制Linux核心netfilter的模組，管理封包的處理與轉傳，所以其實是一個防火牆過濾的模組。  
+可做上述的DoS、DDoS和暴力破解的防護。  
+[DoS防護]()
 ### 2.Fail2ban
-
+可做上述的DoS、DDoS和暴力破解的防護。  
+[DoS防護]()
 ### 3.二次認證
