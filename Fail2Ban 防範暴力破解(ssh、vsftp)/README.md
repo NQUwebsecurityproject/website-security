@@ -51,5 +51,4 @@ maxretry = 10  # 登入失敗幾次封鎖
 ```
 systemctl restart fail2ban
 ```
-## 3.展示攻擊與防護(影片)
-[NQU資工第五組專題:fail2ban防護篇](https://www.youtube.com/watch?v=wEuQW9laTg4&t=1s)。
+展示攻擊與防護(影片):[NQU資工第五組專題:fail2ban防護篇](https://www.youtube.com/watch?v=wEuQW9laTg4&t=1s)。
