@@ -33,6 +33,6 @@ Iptable是個控制Linux核心netfilter的模組，管理封包的處理與轉�
 可做上述DoS、DDoS和暴力破解的防護。  
 [Fail2Ban 防範暴力破解(ssh、vsftp)](https://github.com/NQUwebsecurityproject/website-security/tree/master/Fail2Ban%20%E9%98%B2%E7%AF%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3(ssh%E3%80%81vsftp))
 ### 3.二次認證
-Google Authenticator就是google的二次認證套件，在你做遠端登入時可能你用的電腦被監控，或是其他惡意人是要竊取你遠端的帳密，這時再加一個像是即時安全鎖的機制，在你登完你的帳戶時，再用手機把你的即時密碼輸入進去，才能登到你的電腦裡。
+Google Authenticator就是google的二次認證套件，在你做遠端登入時可能你用的電腦被監控，或是其他惡意人士要竊取你遠端的帳密，這時再加一個像是即時安全鎖的機制，在你登完你的帳戶時，再用手機把你的即時密碼輸入進去，才能登到你的電腦裡。  
 可做上述暴力破解的防護。  
 [CentOS 7 SSH 連線驗證(Google Authenticator)](https://github.com/NQUwebsecurityproject/website-security/tree/master/google%E4%BA%8C%E6%AC%A1%E8%AA%8D%E8%AD%89(%E9%98%B2%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3))
