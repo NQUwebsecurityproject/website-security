@@ -1,54 +1,16 @@
-# 使用Fail2Ban防範暴力破解(ssh、vsftp) 
+# 使用hydra對Webcam進行暴力破解 
 
-<font  size=2 >本教學者使用fail2ban安裝0.9.7版
-參照:[用 Fail2Ban 防範暴力破解 (SSH、vsftp、dovecot、sendmail)](http://www.vixual.net/blog/archives/252)</font>
+<font  size=2 >本教學者使用hydra套件  
 
-Fail2ban 可以藉由掃描 log檔 (例如:/var/log/secure) 找出有惡意的IP進而去禁止其IP一段時間無法連入該伺服器或是永遠禁止，而暴力破解會造成一連串的登入失敗Fail2ban即可偵查出並加以防範。
-## 1.安裝Fail2Ban
+請問你可曾想過當家裡的雲端監控攝影機哪天被有心人士使用，而你的隱私權被這個有心人知道呢?有在家裡裝攝影機可能知道要在他處像是手機監控，要登入Webcam的雲端伺服器，當被其他人知道帳密時，這個人也可登進去看，接下來演示破解Webcam。
+## 1.安裝hydra
 ```
-# yum install fail2ban
-# systemctl enable fail2ban
-# systemctl start fail2ban
+# yum install hydra
 ```
-## 2.更改設定檔
-```
-# cd /etc/fail2ban
-# cp fail2ban.conf fail2ban.local
-# gedit fail2ban.local
-```
-fail2ban.local預設內容
-```python
-[DEFAULT]
- Ignoreip  = 127.0.0.1/8  # 忽略 IP 的清單，以空白區隔不同 IP
- bantime  = 600 # 封鎖的時間，單位:秒，600=10分鐘，改為 -1 表示「永久」封鎖
- findtime  = 600 # 在多久的時間內，單位:秒，600=10分鐘
- maxretry  = 5 # 登入失敗幾次封鎖
-```
-添加以下內容
-```python
-[ssh-iptables]  
-enabled  = true # 啟用 SSH
-filter    = sshd
-action   = iptables[name=SSH, port=ssh, protocol=tcp]
-sendmail-whois[name=VSFTPD, dest=收件者 EMail, sender=顯示的寄件者 EMail]
-logpath  = /var/log/secure  # Log 檔的位置
-findtime  = 600 # 在多久的時間內，單位:秒，600=10分鐘
-maxretry = 10  # 登入失敗幾次封鎖
-```
-```python
-[vsftpd-iptables]
- enabled  = true # 改為 true 以啟用 vsftpd
- filter   = vsftpd
- action   = iptables[name=VSFTPD, port=ftp, protocol=tcp]
-     sendmail-whois[name=VSFTPD, dest=收件者 EMail, sender=顯示的寄件者 EMail]
- logpath  = /var/log/secure # Log 檔的位置 (log 檔的位置與 ssh 相同)
- maxretry = 10 # 登入失敗幾次封鎖
- bantime  = 3600 # 封鎖的時間，單位:秒，3600=1小時
-```
-![image](https://github.com/NQUwebsecurityproject/website-security/blob/master/Fail2Ban%20%E9%98%B2%E7%AF%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3(ssh%E3%80%81vsftp)/p3.png)
-
-最後記得做
-```
-systemctl restart fail2ban
-```
-展示攻擊與防護(影片):[NQU資工第五組專題:fail2ban防護篇](https://www.youtube.com/watch?v=wEuQW9laTg4&t=1s)。
+## 2.查出Webcam server的IP與Url等資料
+首先如果你要看的Webcam是在你所連的分享器上，你可以用IP Scanner找到IP，如果只是隨機找練習用，網路上有一些網站有Webcam的IP。  
+再來在瀏覽器上輸入所查IP，並把程式開發人員選項打開，調到Network，把Url,Host,User Password形式及錯誤訊息記下，但本次演練的Webcam沒這些設定，如果有就要加在hydra指令裡。  
+指令如下：  
+hydra -l admin -P xxx.txt -V 192.168.0.242 http-get url  
+到xxx.txt前是用戶以及暴力破解使用的password檔，-V是指會詳細的展現破解的流程，之後host即192.168.0.242，傳輸形式為get，所以輸入http-get，接著Url用剛剛在瀏覽器查到的即可。  
+展示攻擊Webcam影片:[駭入webcam](https://www.youtube.com/watch?v=KZ3TBHk6IYc)。
