@@ -8,7 +8,7 @@
 >參考於:[git clone 報錯 incompatible or unsupported protocol version處理方法](https://blog.csdn.net/feinifi/article/details/79629904)。
 先git clone google-authenticator-libpam到你虛擬機的桌面安裝Development Tools。
 ```
-# git clone google-authenticator-libpam
+# git clone https://github.com/google/google-authenticator-libpam.git
 # yum groupinstall "Development Tools"
 ```
 再來進到google-authenticator-libpam-master資料夾，執行bootstrap.sh,configure兩個檔案，之後再下make && make install。
