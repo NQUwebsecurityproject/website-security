@@ -19,7 +19,8 @@
  2.網路抽獎廣告連結  
  這裡有幾種建立釣魚網站的方式：  
  [Apache建簡易網站](https://github.com/NQUwebsecurityproject/website-security/tree/master/XSS%E6%94%BB%E6%93%8A/hackpasswd/hackerproof)  
- [beef建置釣魚網站]() 
+ [beef建置釣魚網站](https://www.youtube.com/watch?v=3mcEpn0_sJM)
+ [setoolkit建置釣魚網站](https://www.youtube.com/watch?v=9n5BQiGtxDk) 
 ### 3.DoS,DDoS
 DoS攻擊：為阻斷服務攻擊，顧名思義就是想把伺服器的連線給阻斷掉，駭客通常會對伺服器一直做請求或偽造的回應封包，導致伺服器壅塞，這樣伺服器品質下滑。 
 HPING3做資源消耗型攻擊，主要是TCP洪水攻擊，一直傳送大量帶有特定旗標的TCP(通常都是SYN)封包，導致受害者不斷回送ACK封包，使資料無法傳送。  
@@ -30,8 +31,7 @@ Iptable是個控制Linux核心netfilter的模組，管理封包的處理與轉�
 可做上述的DoS、DDoS和暴力破解的防護。  
 [DoS防護](https://github.com/LarrySu508/website-security/blob/master/DoS%E9%98%B2%E8%AD%B7/README.md)
 ### 2.Fail2ban
-其實Fail2ban和IPtable的方式是一樣的，也是做防火牆過濾的作用，因為Fail2ban是建在IPtable上的套件，只是可以多增加一些設定，像是ssh,ftp連線的設定，寄送通知email的設定等等。  
-可做上述DoS、DDoS和暴力破解的防護。  
+Fail2ban是運用Iptable防火牆的機制，當偵查到不明有危害的ip就能進行封鎖，而偵查方式是運用連入伺服器留下的log檔的資訊，當某一ip的封包在短時間內大量傳送到伺服器時能進行防護，比如暴力破解網頁密碼，短時間內傳大量帳密的測試封包要破解使用者的帳密，fail2ban能對其ip進行封鎖。
 [Fail2Ban 防範暴力破解(ssh、vsftp)](https://github.com/NQUwebsecurityproject/website-security/tree/master/Fail2Ban%20%E9%98%B2%E7%AF%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3(ssh%E3%80%81vsftp))
 ### 3.二次認證
 Google Authenticator就是google的二次認證套件，在你做遠端登入時可能你用的電腦被監控，或是其他惡意人士要竊取你遠端的帳密，這時再加一個像是即時安全鎖的機制，在你登完你的帳戶時，再用手機把你的即時密碼輸入進去，才能登到你的電腦裡。  
