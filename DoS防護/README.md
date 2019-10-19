@@ -20,7 +20,7 @@ iptables -A INPUT -p tcp --dport 80 -m recent --name BAD_HTTP_ACCESS --update --
 ```
 上述兩個指令表達是在6秒內相同IP請求連線次數超過10個即拒絕回應
 
-參考資料([Linux 下用 iptables 預防 DDOS](https://www.youtube.com/watch?v=ivcXCg2x05o))
+參考資料: [Linux 下用 iptables 預防 DDOS](https://www.opencli.com/linux/iptables-prevent-ddos)
 ## 影片說明
 本次有實際防範影片，駭客用上述hping3的攻擊指令導致Http Server無法服務，但伺服器有在防火牆上做上述過濾規則，導致只有駭客IP被回絕的成效。   
 成果影片：[DoS防護](https://www.youtube.com/watch?v=ivcXCg2x05o)
