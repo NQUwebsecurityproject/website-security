@@ -23,8 +23,7 @@ gedit /etc/fail2ban/jail.conf
 enabled = true  ##啟用
 port   =http,https
 filter = httpd    ##過濾檔名稱
-action = iptables-multiport[name=http, port="http,https",protocol=tcp]               ##動作
-       sendmail-whois[name=http, dest=fail2ban@gmail.com, sender=fail2ban]      #能寄送email
+action = iptables-multiport[name=http, port="http,https",protocol=tcp]         ##動作
 logpath  = /var/log/httpd/tecminttest-acces-log      #acces-log檔位置
 maxretry = 10                       #登入失敗幾次封鎖 
 findtime = 60                        
@@ -36,7 +35,9 @@ bandtime = 120                      #被ban的時間
 先查看log檔：
 ```
 cat /var/log/httpd/tecminttest-acces-log
-```     
+```
+> 此處wordpress的log檔在tecminttest-acces-log
+
 ![image](g.png)
 > 可以看到log檔的前端皆為client端的ip，等下過濾檔以此為依據比對
 
@@ -89,4 +90,3 @@ fail2ban-client status apache-auth
 iptables --list
 ```
 確實iptables有把駭客的ip給ban掉了! 駭客端想要連此ip的話就會連不上，只能等bantime時間結束為止      
-資料來源: http://www.vixual.net/blog/archives/252
