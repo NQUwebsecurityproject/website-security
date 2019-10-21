@@ -88,5 +88,5 @@ fail2ban-client status apache-auth
 ```
 iptables --list
 ```       
-![image](h.png)        
-確實iptables有把駭客的ip給ban掉了! 駭客端想要連此ip的話就會連不上，只能等bantime時間結束為止      
+![image](h.jpg)        
+確實iptables有把駭客的ip給reject掉了! 駭客端想要連此ip的話就會連不上，只能等bantime時間結束為止      
