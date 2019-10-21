@@ -13,7 +13,7 @@
 hydra -l jack -P pass.txt -V 192.168.207.8 http-form-post "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:ERROR"
 ```
 ## Fail2ban規則編寫
-### 設定檔編寫  
+### 規則檔編寫  
 ```
 gedit /etc/fail2ban/jail.conf
 ```
@@ -24,7 +24,7 @@ enabled = true  ##啟用
 port   =http,https
 filter = httpd    ##過濾檔名稱
 action = iptables-multiport[name=http, port="http,https",protocol=tcp]         ##動作
-logpath  = /var/log/httpd/tecminttest-acces-log      #acces-log檔位置
+logpath  = /var/log/httpd/tecminttest-acces-log      #log檔位置
 maxretry = 10                       #登入失敗幾次封鎖 
 findtime = 60                        
 bandtime = 120                      #被ban的時間
@@ -61,7 +61,7 @@ ignoreregex =
 ```python       
 failregex =<HOST>.      
 ```
-這裡過濾檔的編寫很簡單，只要比對連入伺服器的主機ip就好了，因為我們是要防範暴力破解，所以要防護短時間內有大量的測試帳密封包，而那些設定檔有做好設定了，所以過濾檔只要去比對ip就好了
+這裡過濾檔的編寫很簡單，只要比對連入伺服器的主機ip就好了，因為我們是要防範暴力破解，所以要防護短時間內有大量的測試帳密封包，而那些規則檔有做好設定了，所以過濾檔只要去比對ip就好了
 
 ### 過濾器測試
 測試過濾檔有沒有比對到log檔的內容：      
