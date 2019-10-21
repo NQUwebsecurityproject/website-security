@@ -13,7 +13,7 @@
 hydra -l jack -P pass.txt -V 192.168.207.8 http-form-post "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:ERROR"
 ```
 ## Fail2ban規則編寫
-### 規則檔編寫  
+### 設定檔編寫  
 ```
 gedit /etc/fail2ban/jail.conf
 ```
@@ -39,7 +39,7 @@ cat /var/log/httpd/tecminttest-acces-log
 > 此處wordpress的log檔在tecminttest-acces-log
 
 ![image](g.png)
-> 此處可以看到log檔的前端皆為連入伺服器的主機ip而皆是192.168.207.3是因為剛有先暴力破解過所以這是駭客的ip，等下過濾檔以此為依據比對
+> 此處可以看到log檔的前端皆為連入伺服器的主機ip，而皆是192.168.207.3是因為剛有先暴力破解過所以這是駭客的ip，等下過濾檔以此為依據比對
 
 再編寫過濾檔：       
 ```
