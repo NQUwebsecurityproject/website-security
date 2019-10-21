@@ -12,8 +12,8 @@
 ```
 hydra -l jack -P pass.txt -V 192.168.207.8 http-form-post "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:ERROR"
 ```
-## Fail2ban規則編寫
-### 規則檔編寫  
+## Fail2ban
+### 設定檔編寫  
 ```
 gedit /etc/fail2ban/jail.conf
 ```
@@ -61,7 +61,7 @@ ignoreregex =
 ```python       
 failregex =<HOST>.      
 ```
-這裡過濾檔的編寫很簡單，只要比對連入伺服器的主機ip就好了，因為我們是要防範暴力破解，所以要防護短時間內有大量的測試帳密封包，而那些規則檔有做好設定了，所以過濾檔只要去比對ip就好了
+這裡過濾檔的編寫很簡單，只要比對連入伺服器的主機ip就好了，因為我們是要防範暴力破解，所以要防護短時間內有大量的測試帳密封包，而那些設定檔有做好設定了，所以過濾檔只要去比對ip就好了
 
 ### 過濾器測試
 測試過濾檔有沒有比對到log檔的內容：      
@@ -76,7 +76,7 @@ systemctl restart fail2ban
 再做一次駭客端攻擊。          
 發現沒有成功，而且還被伺服器禁止做連線。
 
-### 查看執行檔的執行狀態
+### 查看設定檔的執行狀態
 ```
 fail2ban-client status apache-auth
 ```     
