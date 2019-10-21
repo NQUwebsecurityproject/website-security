@@ -25,11 +25,11 @@ port   =http,https
 filter = httpd    ##過濾檔名稱
 action = iptables-multiport[name=http, port="http,https",protocol=tcp]         ##動作
 logpath  = /var/log/httpd/tecminttest-acces-log      #log檔位置
-maxretry = 10                       #登入失敗幾次封鎖 
+maxretry = 10                       #登入失敗N/2次封鎖 
 findtime = 60                        
 bandtime = 120                      #被ban的時間
 ```
-> 這裡設定一分鐘之內有10次嘗試登入的動作，ip就會被ban 2分鐘的時間
+> 這裡設定一分鐘之內有5次嘗試登入的動作，因為觀察log檔在執行暴力破解時會傳一次GET一次POST，所以要除以2，接著ip就會被ban 2分鐘的時間。
 ### 過濾器編寫      
 過濾器的作用是在log檔中比對出駭客攻擊的訊息。     
 先查看log檔：
@@ -51,7 +51,6 @@ gedit /etc/fail2ban/filter.d/httpd.conf
 [INCLUDES]
 # Read common prefixes. If any customizations available -- read them from
 # apache-common.local
-before = apache-common.conf
 
 [Definition]
 
@@ -80,13 +79,14 @@ systemctl restart fail2ban
 ```
 fail2ban-client status apache-auth
 ```     
-![image](f.png)
+![image](f.png)       
 
 > 此處可以看到駭客的ip 192.168.207.3被ban掉了，代表防護成功!!!
 
-再來觀察iptables的狀況    
+再來觀察iptables的狀況       
 
 ```
 iptables --list
-```
+```       
+![image](h.png)        
 確實iptables有把駭客的ip給ban掉了! 駭客端想要連此ip的話就會連不上，只能等bantime時間結束為止      
