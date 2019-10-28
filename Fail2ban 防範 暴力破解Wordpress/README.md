@@ -8,7 +8,7 @@
 伺服器端防護工具為fail2ban(需安裝python)。    
 ## Hydra攻擊指令介紹      
 ![image](c.png)      
-先開網頁的F12，擷取需要的資料，需要URL(http://192.168.207.8/wp-login.php)、傳送方式(http-form-post)、網址後綴(/wp-login.php)、USER帳戶PASS密碼格式(log=^USER^&pwd=^PASS^))、按鈕的名稱和值(wp-submit=Log In)、cookie(testcookie=1)、錯誤訊息(ERROR):           
+先開網頁的F12，擷取需要的資料，需要URL(`http://192.168.207.8/wp-login.php`)、傳送方式(http-form-post)、網址後綴(/wp-login.php)、USER帳戶PASS密碼格式(log=^USER^&pwd=^PASS^)、按鈕的名稱和值(wp-submit=Log In)、cookie(testcookie=1)、錯誤訊息(ERROR):           
 ![image](i.png)      
 ![image](j.png)      
 所以指令如下：                   
