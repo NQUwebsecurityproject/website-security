@@ -23,7 +23,7 @@ vi /etc/fail2ban/jail.conf
 enabled = true
 filter = wordpress
 action = iptables-multiport[name=http, port="http,https",protocol=tcp]
-         sendmail-whois[name=wordpress, dest=zz860926@yahoo.com.tw,sender=fail2ban]
+         sendmail-whois[name=wordpress, dest=root@localhost,sender=fail2ban]
 logpath  = /var/log/httpd/tecminttest-acces-log
 maxretry = 120  # 登入失敗120次封鎖
 findtime = 120
