@@ -10,27 +10,27 @@
 ![image](c.png)      
 先查看網頁的原始碼，在擷取需要的資料，詳細說明參考[Hydra操作說明](https://github.com/NQUwebsecurityproject/website-security/tree/master/Hydra%E6%93%8D%E4%BD%9C%E8%AA%AA%E6%98%8E)，攻擊指令如下：       
 ```
-hydra -l jack -P pass.txt -V 192.168.207.8 http-form-post "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:ERROR"
+hydra -l smallan -P pwdtxt -V 192.168.56.2 http-form-post "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:ERROR"
 ```
 ## Fail2ban
 ### 設定檔編寫  
 ```
-gedit /etc/fail2ban/jail.conf
+vi /etc/fail2ban/jail.conf
 ```
 添加以下內容
 ```python
-[apache-auth]   ##名稱
-enabled = true  ##啟用
-port   =http,https
-filter = httpd    ##過濾檔名稱
-action = iptables-multiport[name=http, port="http,https",protocol=tcp]         ##動作
-logpath  = /var/log/httpd/tecminttest-acces-log      #log檔位置
-maxretry = 10                       #登入失敗N/2次封鎖 
-findtime = 60                        
-bandtime = 120                      #被ban的時間
+[wordpress]
+enabled = true
+filter = wordpress
+action = iptables-multiport[name=http, port="http,https",protocol=tcp]
+         sendmail-whois[name=wordpress, dest=zz860926@yahoo.com.tw,sender=fail2ban]
+logpath  = /var/log/httpd/tecminttest-acces-log
+maxretry = 120  # 登入失敗120次封鎖
+findtime = 120
+bandtime = 120
 ```
-> 這裡設定一分鐘之內有5次嘗試登入的動作，因為觀察log檔在執行暴力破解時會傳一次GET一次POST，所以要除以2，接著ip就會被ban 2分鐘的時間。
-### 過濾器編寫      
+> 這裡設定兩分鐘之內有120次以上嘗試登入的動作，該ip就會被禁止連線2分鐘的時間。
+### 過濾器編寫
 過濾器的作用是在log檔中比對出駭客攻擊的訊息。     
 先查看log檔：
 ```
@@ -39,49 +39,41 @@ cat /var/log/httpd/tecminttest-acces-log
 > 此處wordpress的log檔在tecminttest-acces-log
 
 ![image](g.png)
-> 此處可以看到log檔的前端皆為連入伺服器的主機ip，而皆是192.168.207.3是因為剛有先暴力破解過所以這是駭客的ip，等下過濾檔以此為依據比對
 
-再編寫過濾檔：       
+編寫過濾檔     
 ```
-gedit /etc/fail2ban/filter.d/httpd.conf
-```      
+vi /etc/fail2ban/filter.d/wordpress.conf
+```
 ```python
-# Fail2Ban httpd filter
-#
-[INCLUDES]
-# Read common prefixes. If any customizations available -- read them from
-# apache-common.local
+# Fail2Ban wordpress filter
 
 [Definition]
 
-failregex =<HOST>.
+failregex =<HOST> - - .*"POST /wp-login.php
 ignoreregex =
 ```
-```python       
-failregex =<HOST>.      
-```
-這裡過濾檔的編寫很簡單，只要比對連入伺服器的主機ip就好了，因為我們是要防範暴力破解，所以要防護短時間內有大量的測試帳密封包，而那些設定檔有做好設定了，所以過濾檔只要去比對ip就好了
+> 伺服器一次連線會有GET與POST的紀錄，所以這裡只抓POST的紀錄
 
 ### 過濾器測試
 測試過濾檔有沒有比對到log檔的內容：      
 ```
 fail2ban-regex /var/log/httpd/tecminttest-acces-log /etc/fail2ban/filter.d/httpd
 ```      
-![image](d.png)       
-測試都比對到了，重啟fail2ban：      
+      
+重啟fail2ban：      
 ```
 systemctl restart fail2ban
 ```
-再做一次駭客端攻擊。          
+再做一次駭客端攻擊測試          
 發現沒有成功，而且還被伺服器禁止做連線。
 
 ### 查看設定檔的執行狀態
 ```
-fail2ban-client status apache-auth
+fail2ban-client status wordpress
 ```     
 ![image](f.png)       
 
-> 此處可以看到駭客的ip 192.168.207.3被ban掉了，代表防護成功!!!
+> 此處可以看到駭客的ip 192.168.56.103被ban掉了，代表防護成功!!!
 
 再來觀察iptables的狀況       
 
