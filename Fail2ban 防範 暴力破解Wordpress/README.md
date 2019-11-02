@@ -3,8 +3,8 @@
 * 伺服器端為centos 7(wordpress需要Apache,PHP,MariaDB)
     >　Wordpress架設參考[Install WordPress 5 with Apache, MariaDB 10 and PHP 7 on CentOS 7](https://www.tecmint.com/install-wordpress-with-apache-on-centos-rhel-fedora/)。
 * 駭客端為kali linux
-     
-駭客端暴力破解工具為hydra
+
+駭客端暴力破解工具為hydra     
 伺服器端防護工具為fail2ban(需安裝python)。    
 ## Hydra攻擊指令介紹      
 ![image](c.png)      
