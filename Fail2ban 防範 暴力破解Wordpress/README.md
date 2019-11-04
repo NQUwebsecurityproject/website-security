@@ -57,7 +57,7 @@ ignoreregex =
 ### 過濾器測試
 測試過濾檔有沒有比對到log檔的內容：      
 ```
-fail2ban-regex /var/log/httpd/tecminttest-acces-log /etc/fail2ban/filter.d/httpd
+fail2ban-regex /var/log/httpd/tecminttest-acces-log /etc/fail2ban/filter.d/wordpress
 ```      
       
 重啟fail2ban：      
