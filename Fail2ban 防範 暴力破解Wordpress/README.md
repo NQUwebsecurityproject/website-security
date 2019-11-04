@@ -82,3 +82,6 @@ iptables --list
 ```       
 ![image](h.jpg)        
 確實iptables有把駭客的ip給reject掉了! 駭客端想要連此ip的話就會連不上，只能等bantime時間結束為止      
+
+## 影片展示
+[fail2ban 防範暴力破解 wordpress](https://youtu.be/O0v-rPx_sjI)
