@@ -56,12 +56,15 @@ systemctl restart fail2ban
 fail2ban-client status 
 ```
 ![](fail2ban-client.png)
+
+查看ssh的狀態
+
 ```
 fail2ban-client status ssh
 ```
 ![](fail2ban-client_ssh.png)
 
-當駭客用暴力破解攻擊時
+當駭客用暴力破解攻擊時，可以封鎖駭客IP
 
 ![](ban_hacker.png)
 > 192.168.56.101 為駭客IP
@@ -71,4 +74,5 @@ fail2ban-client status ssh
 iptables --list
 ```
 ![](iptables_ban_hacker.png)
+
 
