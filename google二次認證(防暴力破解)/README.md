@@ -23,7 +23,7 @@
 # ./configure
 # make && make install
 ```
->![](image/b.PNG)
+>![](image/b.PNG)                  
 如果出現錯誤訊息，無法找到PAM library or the PAM header檔案，就先安裝pam-devel套件後，再下./configure指令。
 ```
 # yum install pam-devel
