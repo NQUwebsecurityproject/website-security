@@ -43,6 +43,7 @@ $passwd = $_POST["pass"];
 $account = $_POST["email"];
 ```
 以上帳號密碼的名稱可以從form表單得知
+
 ![](image/d.PNG)
 
 以下為php語法，把前端輸入的帳號密碼寫到logfile.txt檔案裡
