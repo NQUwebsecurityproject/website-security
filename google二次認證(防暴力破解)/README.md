@@ -1,6 +1,6 @@
 # CentOS 7 SSH 連線驗證(Google Authenticator)  
 > 參照:[CentOS 7 SSH 兩步驟驗證](https://kenwu0310.wordpress.com/2016/12/09/centos-7-ssh-%E9%9B%99%E5%9B%A0%E7%B4%A0%E8%AA%8D%E8%AD%89-using-google-authenticator/)
-## 1.安裝google-authenticator
+## 安裝google-authenticator
 因為要用到git的套件，所以要先看看你虛擬機上的git版本是否最新，如果不是請在root模式下:
 ```
 # yum update nss curl\
@@ -58,7 +58,7 @@ ChallengeResponseAuthentication yes
 ```
 #systemctl restart sshd
 ```
-## 6.啟動google-authenticator
+## 啟動google-authenticator
 執行google-authenticator後會出現QRcode，然後在手機下載google-authenticator，手機開啟google-authenticator後，會請你掃碼或輸入金鑰，之後你在遠端登入用SSH協定時，必須再輸入手機二次驗證碼，還有個重點是在QRcode下方有五行數字，那五個字串是你無法正常驗證時，用來當萬能鑰匙的。
 ```
 # google-authenticator
