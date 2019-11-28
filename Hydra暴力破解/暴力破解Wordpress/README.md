@@ -52,6 +52,10 @@ wp-submt=Log In&testcookie=1  後綴訊息
 incorrect   登入錯誤訊息
 ```
 
+最後能破解到密碼0927，代表測試成功
+
+![](image/h.PNG)
+
 ## 2.使用burp suite來擷取封包
 
 直接使用kalilinux已裝好burp suite來使用
