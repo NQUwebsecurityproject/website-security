@@ -32,10 +32,37 @@ https://developers.google.com/recaptcha/docs/display
 <div class="g-recaptcha" data-sitekey="your_site_key"></div>
 ```
 測試網頁就會看到
+
 ![](image/c.PNG)
+
 ![](image/d.PNG)
 
 ## 登入網頁實作
+[index.html](https://github.com/NQUwebsecurityproject/website-security/blob/master/Recaptcha%E7%B6%B2%E9%A0%81%E8%AA%8D%E8%AD%89%E6%95%99%E5%AD%B8/index.html)
+
+在\<script>裡加上自定義的function：
+```javascript
+var Vstate = false;
+function verify() {
+    Vstate = true;
+}
+function expired() {
+    Vstate = false;
+}
+```
+最後在submit按鈕中加入一個onclick function，如果已經有了，直接在送submit的程式前加一個簡單的認證：
+```html
+onclick="javascript:return CheckValidate()" 
+```
+並在\<script>裡加上自定義的檢查function：
+```javascript
+function CheckValidate() {
+	return Vstate;
+	}
+```
+
+[login.php](https://github.com/NQUwebsecurityproject/website-security/blob/master/Recaptcha%E7%B6%B2%E9%A0%81%E8%AA%8D%E8%AD%89%E6%95%99%E5%AD%B8/login.php)
+
 
 ## 補充
 （因每個人需求不同這邊僅供參考）
