@@ -1,0 +1,37 @@
+<html>
+    <head><meta charset="utf-8">
+        <title>是個需要登入的網站</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script>
+                  var Vstate = false;
+                function verify() {
+                    $('#recaptchaV').text('');
+                Vstate = true;
+                }
+                function expired() {
+                Vstate = false;
+                }
+                  function CheckValidate() {
+                    if (!Vstate) {
+                      $('#recaptchaV').text('請勾選核取方塊');
+                return Vstate;
+                    } else {
+                      $('#recaptchaV').text('');
+            $('#demo-form').submit();
+                    }
+                }
+        </script>
+    </head>
+    <body>
+            <form id="demo-form"  action="login.php" method="POST">
+            <span>賬號：</span><input id="acc" name="account" placeholder="賬號">
+            <span>密碼：</span><input id="pwd" name="passwd" type="password" placeholder="密碼">
+            <div class="g-recaptcha" data-sitekey="6LejqMYUAAAAABavniWIbmnLpjPMq5s0s8nVrxE9" data-callback="verify" data-expired-callback="expired"></div>
+      <br/>
+      <span id="recaptchaV"></span>
+      <input  type="button"  onclick="javascript:return CheckValidate()" value="Submit">
+    </form>
+</body>
+</html>
+
