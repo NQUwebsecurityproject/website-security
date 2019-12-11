@@ -30,10 +30,10 @@ DDoS攻擊：為分散式阻斷服務攻擊，意思就是強化版的DoS攻擊�
 ### 1.IPtable
 Iptable是個控制Linux核心netfilter的模組，管理封包的處理與轉傳，所以其實是一個防火牆過濾的模組。  
 可做上述的DoS、DDoS和暴力破解的防護。  
-[iptables設定教學](https://github.com/NQUwebsecurityproject/website-security/tree/master/Linux%E9%98%B2%E7%81%AB%E7%89%86iptable%E8%A8%AD%E5%AE%9A)
+[iptables設定教學](https://github.com/NQUwebsecurityproject/website-security/tree/master/Linux%E9%98%B2%E7%81%AB%E7%89%86iptable%E8%A8%AD%E5%AE%9A)   
 [DoS防護](https://github.com/LarrySu508/website-security/blob/master/DoS%E9%98%B2%E8%AD%B7/README.md)
 ### 2.Fail2ban
-Fail2ban是運用Iptable防火牆的機制，當偵查到不明有危害的ip就能進行封鎖，而偵查方式是運用連入伺服器留下的log檔的資訊，當某一ip的封包在短時間內大量傳送到伺服器時能進行防護，比如暴力破解網頁密碼，短時間內傳大量帳密的測試封包要破解使用者的帳密，fail2ban能對其ip進行封鎖。
+Fail2ban是運用Iptable防火牆的機制，當偵查到不明有危害的ip就能進行封鎖，而偵查方式是運用連入伺服器留下的log檔的資訊，當某一ip的封包在短時間內大量傳送到伺服器時能進行防護，比如暴力破解網頁密碼，短時間內傳大量帳密的測試封包要破解使用者的帳密，fail2ban能對其ip進行封鎖。   
 [Fail2Ban 教學](https://github.com/NQUwebsecurityproject/website-security/tree/master/Fail2ban%E6%95%99%E5%AD%B8)
 ### 3.二次認證
 Google Authenticator就是google的二次認證套件，在你做遠端登入時可能你用的電腦被監控，或是其他惡意人士要竊取你遠端的帳密，這時再加一個像是即時安全鎖的機制，在你登完你的帳戶時，再用手機把你的即時密碼輸入進去，才能登到你的電腦裡。  
