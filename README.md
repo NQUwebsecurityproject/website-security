@@ -39,3 +39,4 @@ Fail2ban是運用Iptable防火牆的機制，當偵查到不明有危害的ip就
 Google Authenticator就是google的二次認證套件，在你做遠端登入時可能你用的電腦被監控，或是其他惡意人士要竊取你遠端的帳密，這時再加一個像是即時安全鎖的機制，在你登完你的帳戶時，再用手機把你的即時密碼輸入進去，才能登到你的電腦裡。  
 可做上述暴力破解的防護。  
 [CentOS 7 SSH 連線驗證(Google Authenticator)](https://github.com/NQUwebsecurityproject/website-security/tree/master/google%E4%BA%8C%E6%AC%A1%E8%AA%8D%E8%AD%89(%E9%98%B2%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3))
+
