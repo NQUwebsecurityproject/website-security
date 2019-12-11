@@ -34,7 +34,7 @@ https://developers.google.com/recaptcha/docs/display
 測試網頁就會看到
 
 ![]()
-<img src="image/c.PNG" width = "300" />
+<img src="image/c.PNG" width = "300" align=center/>
 <img src="image/d.PNG" width = "300" />
 
 ## 第三步 設計登入網頁
