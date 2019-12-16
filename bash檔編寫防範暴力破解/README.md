@@ -14,6 +14,8 @@ watch -n 1 ./nameit.bash
 ```
 >每秒執行一次./nameit.bash
 
+當有駭客攻擊時
+
 ![](image/test.gif)
 
 查看iptables
