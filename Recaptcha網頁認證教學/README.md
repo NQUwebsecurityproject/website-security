@@ -81,6 +81,7 @@ function CheckValidate() {
 這樣初步的網頁認證就完成了
 
 ## 第四步 完整程式碼
+[index.index](https://github.com/NQUwebsecurityproject/website-security/blob/master/Recaptcha%E7%B6%B2%E9%A0%81%E8%AA%8D%E8%AD%89%E6%95%99%E5%AD%B8/index.html)
 ```html
 <html>
     <head><meta charset="utf-8">
@@ -120,4 +121,5 @@ function CheckValidate() {
 </html>
 
 ```
+[login.php](https://github.com/NQUwebsecurityproject/website-security/blob/master/Recaptcha%E7%B6%B2%E9%A0%81%E8%AA%8D%E8%AD%89%E6%95%99%E5%AD%B8/login.php)
 
