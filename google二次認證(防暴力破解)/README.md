@@ -34,7 +34,7 @@
 ```
 # find / -name pam_google_authenticator.so -type f
 ```
-![](image/a.PNG)
+![](image/a.PNG)    
 ```
 # mv /usr/local/lib/security/pam_google_authenticator.so /usr/lib64/security/
 ```
@@ -63,10 +63,10 @@ ChallengeResponseAuthentication yes
 ```
 # google-authenticator
 ```
-<img src="image/c.PNG" width = "200"  align=center />
-<img src="image/e.png" width = "150"  align=center />
-
-
+       
+<img src="image/c.PNG" width = "400"  align="left" />        
+<img src="image/e.png" width = "225.5"  align="left" />      
+           
 ![](image/d.PNG)     
 全部選項都設YES          
  
