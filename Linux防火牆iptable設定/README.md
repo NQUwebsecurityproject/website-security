@@ -71,13 +71,15 @@ iptables -A INPUT -s 140.113.235.151 -d [你自己的IP] -j REJECTED
 ```
 ### 開放內部主機可以 ssh 至外部的主機
 ```
-iptables -A OUTPUT -o eth0 -p tcp -s [$FW_IP] --sport 1024:65535 -d any/0 --dport 22 -j ACCEPT
-iptables -A INPUT -i eth0 -p tcp ! --syn -s any/0 --sport 22 -d [$FW_IP] --dport 1024:65535 -j ACCEPT
+ssh內部網路只允許單一管理者
+iptables -A INPUT -o eth0 -p tcp -s [$FW_IP] --sport 1024:65535 -d any/0 --dport 22 -j ACCEPT //管理者IP位置允許進入
+iptables -A INPUT -o eth0 -p tcp  --dport 22 -j REJECT //非管理者使用ssh即拒絕存取
 ```
 ### 開放內部主機可以 telnet 至外部的主機
 ```
-iptables -A OUTPUT -o eth0 -p tcp -s [$FW_IP] --sport 1024:65535 -d any/0 --dport 23 -j ACCEPT
-iptables -A INPUT -i eth0 -p tcp ! --syn -s any/0 --sport 23 -d [$FW_IP] --dport 1024:65535 -j ACCEPT
+telnet內部網路只允許單一管理者
+iptables -A INPUT -o eth0 -p tcp -s [$FW_IP] --sport 1024:65535 -d any/0 --dport 23 -j ACCEPT //管理者IP位置允許進入
+iptables -A INPUT -o eth0 -p tcp  --dport 23 -j REJECT //非管理者使用telnet即拒絕存取
 ```
 ### 限制每個 ip 的連線數量
 ```
