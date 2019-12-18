@@ -68,7 +68,7 @@ fail2ban 的好處是在任何網站都能快速建置防護，不用去查看�
 
 現在各家公司登入都有二次認證的功能例如:google、facebook，對於大家常用且重要的帳號可以去啟用二次認證的功能。
 
-以下是ssh 二次認證的防護教學:
+以下是ssh 二次認證的防護教學:    
 [CentOS 7 SSH 連線驗證(Google Authenticator)](https://github.com/NQUwebsecurityproject/website-security/tree/master/google%E4%BA%8C%E6%AC%A1%E8%AA%8D%E8%AD%89(%E9%98%B2%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3))
 
 ## 防護介紹補充
