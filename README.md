@@ -8,6 +8,7 @@
 * [簡介](https://github.com/NQUwebsecurityproject/website-security#%E7%B0%A1%E4%BB%8B)  
 * 專題研究內容  
   1. [釣魚網站](https://github.com/NQUwebsecurityproject/website-security#%E9%87%A3%E9%AD%9A%E7%B6%B2%E7%AB%99)    
+  2. [容易破解的密碼](https://github.com/NQUwebsecurityproject/website-security#%E5%AE%B9%E6%98%93%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%AF%86%E7%A2%BC)
   2. [暴力破解](https://github.com/NQUwebsecurityproject/website-security#%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3)   
   3. [網頁認證碼](https://github.com/NQUwebsecurityproject/website-security#%E7%B6%B2%E9%A0%81%E8%AA%8D%E8%AD%89%E7%A2%BC)
   4. [Fail2ban防範暴力破解](https://github.com/NQUwebsecurityproject/website-security#fail2ban-%E9%98%B2%E7%AF%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3)
