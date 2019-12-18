@@ -3,6 +3,8 @@
 ## 第一步：註冊
 先到[recaptcha官網](https://www.google.com/recaptcha/admin)註冊一個recaptcha管理帳號，並把想要認證的測試網頁網址加入recaptcha網頁認證管理。
 
+可選擇reCAPTCHA類型
+
 ![](image/a.PNG)
 
 然後就會產生金鑰
