@@ -8,11 +8,13 @@
 ## bash檔流程圖
 ![](image/a.png)
 
+對log檔進行監控，只要有失敗登入達25次以上，就把對方的ip加到iptables的黑名單裡面，只要在黑名單裡面就會把對方傳來的封包丟掉
+
 執行程式
 ```
 watch -n 1 ./nameit.bash
 ```
->每秒執行一次./nameit.bash
+>每秒執行一次 [nameit.bash](https://github.com/NQUwebsecurityproject/website-security/blob/master/bash%E6%AA%94%E7%B7%A8%E5%AF%AB%E9%98%B2%E7%AF%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/nameit.bash)
 
 當有駭客攻擊時
 
