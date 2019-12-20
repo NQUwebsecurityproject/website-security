@@ -83,45 +83,45 @@ function CheckValidate() {
 這樣初步的網頁認證就完成了
 
 ## 第四步 完整程式碼
-[index.index](https://github.com/NQUwebsecurityproject/website-security/blob/master/Recaptcha%E7%B6%B2%E9%A0%81%E8%AA%8D%E8%AD%89%E6%95%99%E5%AD%B8/index.html)
+如果想做的更完整一點，可以在recaptcha驗證行下方再加一個span來做出錯提醒，看起來會更清楚。
+	完整程式碼：
+
 ```html
 <html>
-    <head><meta charset="utf-8">
-        <title>是個需要登入的網站</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <script>
-                  var Vstate = false;
-                function verify() {
-                    $('#recaptchaV').text('');
-                Vstate = true;
-                }
-                function expired() {
-                Vstate = false;
-                }
-                  function CheckValidate() {
-                    if (!Vstate) {
-                      $('#recaptchaV').text('請勾選核取方塊');
-                return Vstate;
-                    } else {
-                      $('#recaptchaV').text('');
-            $('#demo-form').submit();
-                    }
-                }
-        </script>
-    </head>
-    <body>
-            <form id="demo-form"  action="login.php" method="POST">
-            <span>賬號：</span><input id="acc" name="account" placeholder="賬號">
-            <span>密碼：</span><input id="pwd" name="passwd" type="password" placeholder="密碼">
-            <div class="g-recaptcha" data-sitekey="6LejqMYUAAAAABavniWIbmnLpjPMq5s0s8nVrxE9" data-callback="verify" data-expired-callback="expired"></div>
-      <br/>
-      <span id="recaptchaV"></span>
-      <input  type="button"  onclick="javascript:return CheckValidate()" value="Submit">
+  <head>
+    <title>reCAPTCHA demo: Simple page</title>
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body>
+    <form id="demo-form"  action="?" method="POST">
+     <div class="g-recaptcha" data-sitekey="your_site_key" data-callback="verify" data-expired-callback="expired"></div>
+      <br/>
+      <span id="recaptchaV"></span>
+      <input onclick="javascript:return CheckValidate()" value="Submit">
     </form>
-</body>
+    <script>
+      var Vstate = false;
+	function verify() {
+        $('#recaptchaV').text('');
+	Vstate = true;
+	}
+	function expired() {
+	Vstate = false;
+	}
+      function CheckValidate() {
+        if (!Vstate) {
+          $('#recaptchaV').text('請勾選核取方塊');
+	return Vstate;
+        } else {
+          $('#recaptchaV').text('');
+$('#demo-form').submit();
+        }
+	}
+    </script>
+  </body>
 </html>
 
 ```
-[login.php](https://github.com/NQUwebsecurityproject/website-security/blob/master/Recaptcha%E7%B6%B2%E9%A0%81%E8%AA%8D%E8%AD%89%E6%95%99%E5%AD%B8/login.php)
+
 
