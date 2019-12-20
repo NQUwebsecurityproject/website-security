@@ -64,7 +64,7 @@ https://howsecureismypassword.net/
 Fail2ban是運用iptables防火牆的機制，當偵查到不明有危害的ip就能進行封鎖，而偵查方式是運用連入伺服器留下的log檔的資訊，當某一ip的封包在短時間內大量傳送到伺服器時能進行防護，比如暴力破解網頁密碼，短時間內傳大量帳密的測試封包要破解使用者的帳密，fail2ban能對其ip進行封鎖，然而能封鎖多久，相關設定可以從以下教程來學習。
 
 1. [Fail2Ban 防範暴力破解(ssh、vsftp)](https://github.com/NQUwebsecurityproject/website-security/tree/master/Fail2ban%20%E9%98%B2%E7%AF%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/Fail2Ban%20%E9%98%B2%E7%AF%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3ssh%20vsftp)
-2. [Fail2ban防範暴力破解Wordpress](https://github.com/NQUwebsecurityproject/website-security/tree/master/Fail2ban%E6%95%99%E5%AD%B8/Fail2ban%20%E9%98%B2%E7%AF%84%20%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3Wordpress)
+2. [Fail2ban防範暴力破解Wordpress](https://github.com/NQUwebsecurityproject/website-security/tree/master/Fail2ban%20%E9%98%B2%E7%AF%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/Fail2ban%20%E9%98%B2%E7%AF%84%20%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3Wordpress)
 
  > Fail2ban vs 網頁認證碼   
 fail2ban 的好處是在任何網站都能快速建置防護，不用去查看網頁程式碼，且不只針對網頁，針對多樣應用程式皆能同時進行防護。
